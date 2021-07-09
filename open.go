@@ -6,6 +6,7 @@ import (
 	"os"
 	"sync"
 
+	"github.com/Reisender/openany/s3"
 	urlOpener "github.com/Reisender/openany/url"
 )
 
@@ -15,6 +16,7 @@ var mut sync.RWMutex
 var backends map[string]Opener = map[string]Opener{
 	"http":  urlOpener.Open,
 	"https": urlOpener.Open,
+	"s3":    s3.Open,
 }
 
 func Register(scheme string, backend Opener) {
